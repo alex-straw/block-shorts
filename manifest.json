@@ -1,21 +1,25 @@
 {
   "manifest_version": 3,
-  "name": "Hide YouTube Shorts",
+  "name": "Hide & Redirect Shorts / Reels",
   "version": "1.2",
-  "description": "Hides Shorts in your YouTube feed and redirects any direct /shorts/ URLs back to the homepage.",
+  "description": "Hides YouTube Shorts & Instagram Reels, and redirects any direct /shorts/ or /reel(s)/ URLs back to the homepage.",
   "permissions": ["scripting"],
-  "host_permissions": ["https://www.youtube.com/*"],
+  "host_permissions": [
+    "https://www.youtube.com/*",
+    "https://*.instagram.com/*"
+  ],
   "content_scripts": [
     {
-      "matches": ["https://www.youtube.com/"],
-      "js": ["hideContentYouTube.js"],
-      "run_at": "document_start"
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["hideShortsYouTube.js", "redirectShortsYouTube.js"],
+      "run_at": "document_start",
+      "all_frames": false
     },
     {
-      "matches": ["https://www.youtube.com/*"],
-      "js": ["redirectYouTube.js"],
-      "run_at": "document_start"
+      "matches": ["https://*.instagram.com/*"],
+      "js": ["redirectReelsInstagram.js"],
+      "run_at": "document_start",
+      "all_frames": false
     }
   ]
 }
- 

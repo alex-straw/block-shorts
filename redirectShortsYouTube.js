@@ -19,9 +19,7 @@ if (!inIframe) {
         for (const fn of ['pushState', 'replaceState']) {
             const original = window.history[fn];
             
-            if (typeof original !== 'function') {
-                continue;
-            }
+            if (typeof original !== 'function') continue;
 
             window.history[fn] = function (...args) {
                 // preserve return value (undefined normally)
